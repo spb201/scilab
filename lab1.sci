@@ -53,7 +53,7 @@ disp(denom(A))
 
 //10
 function [x]=bar(x, y, z)
-    x = eye(x, y) * rand(y, z)
+  x = eye(x, y) * rand(y, z)
 endfunction
 printf("10:\n")
 disp(bar(4,5,6))
