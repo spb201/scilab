@@ -43,3 +43,65 @@ endfunction
 
 disp(overlap_add_convol(x, h))
 disp(convol(x, h))
+
+//task 3
+function [r]=f(_k, _T)
+    r= cos(2 * %pi * _k / _T)
+endfunction
+ 
+//3.1. y(k)=cos(2pik/4)
+T = 4
+k = 0:0.1:15
+ 
+subplot(2, 2, 1)
+xtitle('y(k)=cos(2*pi*k/4)')
+plot(k, f(k, T), '--')
+ 
+subplot(2, 2, 2)
+k = 0:15
+y = abs(fft(f(k, T)))
+xtitle('fft(y(k)=cos(2*pi*k/4))'))
+plot2d3(k./16, y)
+plot(k./16, y, 'o')
+ 
+subplot(2, 2, 1)
+k = 0:15
+plot(k, f(k, T), 'o')
+plot2d3(k, f(k, T))
+ 
+//3.2. cos(2pik/6)
+T = 6
+k = 0:0.1:15
+y = f(k, T)
+Y = fft(y)
+ 
+subplot(2, 2, 3)
+xtitle('y(k)=cos(2*pi*k/6)')
+plot(k, y, '--')
+ 
+subplot(2, 2, 4)
+k = 0:15
+xtitle('fft(y(k)=cos(2*pi*k/6))')
+y = abs(fft(f(k, T)))
+plot2d3(k./16, y)
+plot(k./16, y, 'o')
+ 
+subplot(2, 2, 3)
+k = 0:15
+plot(k, f(k, T), 'o')
+plot2d3(k, f(k, T))
+
+//4
+subplot(2,1,1)
+s = [[1 1 1 1] zeros(1, 26)]
+n = 0:29
+S = abs(fft(s))
+plot(n ./ 30, S, "or")
+plot2d3(n ./30, S)
+
+subplot(2,1,1)
+s = [1 1 1 1 0 0 0 0 0 0 0 0 0 0 0]
+n= 0:14
+S = abs(fft(s))
+plot(n ./ 15, S, "o")
+plot2d3(n ./15, S)
