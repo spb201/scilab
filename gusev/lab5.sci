@@ -1,9 +1,9 @@
 function [res]=_filter(_b, _x)
     res = zeros(1, length(_x))
-    for i=1:(length(_x) + 1)
-        for j=0:5
+    for i=0:length(_x)
+        for j=0:length(_b)
             try
-                res(i - 1) = res(i - 1) + _b(j + 1) * _x(i - j -1)
+                res(i) = res(i) + _b(j + 1) * _x(i - j)
             end
         end
     end
